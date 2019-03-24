@@ -1,3 +1,12 @@
+develop
+  * Process .yadm/encrypt in sorted order
+  * Migrate testing from bats to pytest (#119)
+  * Fix bug with alternate linked directories
+  * Prevent localizations from interfering with sorting order.
+  * Remove superfluous Git invocations
+  * Remove invalid linked alternates (#65)
+  * Update envtpl invocation to allow Jinja includes (#114)
+
 1.12.0
   * Add basic Zsh completion (#71, #79)
   * Support directories in `.yadm/encrypt` (#81, #82)
