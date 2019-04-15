@@ -189,6 +189,40 @@ def test_jinja(runner, yadm_y, paths,
             assert str(paths.work.join(source_file)) not in created
 
 
+@pytest.mark.usefixtures('ds1_copy')
+def test_overwrite_jinja(runner, yadm_y, paths, envtpl_present):
+    """Test jinja overwriting existing files"""
+
+    if not envtpl_present:
+        pytest.skip('Unable to test without envtpl.')
+
+    jinja_suffix = '##yadm.j2'
+    tst_class = 'testclass'
+    utils.set_local(paths, 'class', tst_class)
+
+    template = ('j2-{{ YADM_CLASS }}')
+    expected = (f'j2-{tst_class}')
+
+    target_file = paths.work.join('test_overwrite')
+    target_file.write('wrong data')
+    jinja_file = paths.work.join('test_overwrite' + jinja_suffix)
+    jinja_file.write(template, ensure=True)
+    os.system(f'GIT_DIR={str(paths.repo)} git add "{jinja_file}"')
+    os.system(f'GIT_DIR={str(paths.repo)} git commit -m "Add test files"')
+
+    # run alt to trigger linking
+    run = runner(yadm_y('alt'))
+    assert run.success
+    assert run.err == ''
+    created = created_list(run.out)
+
+    # assert the overwrite
+    assert target_file.isfile()
+    lines = target_file.readlines(cr=False)
+    assert lines[0] == expected
+    assert str(jinja_file) in created
+
+
 def created_list(output):
     """Parse output, and return list of created files"""
 
