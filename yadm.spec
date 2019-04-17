@@ -8,7 +8,8 @@ License: GPLv3
 Requires: bash
 Requires: git
 Requires: /bin/hostname
-Source: "https://github.com/TheLocehiliosan/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz"
+#Source: https://github.com/TheLocehiliosan/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source: https://github.com/TheLocehiliosan/%{name}/archive/%{version}.tar.gz
 BuildArch: noarch
 
 %description
