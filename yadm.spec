@@ -4,8 +4,10 @@ Version: 1.12.0
 Release: 1%{?dist}
 URL: https://github.com/TheLocehiliosan/yadm
 License: GPLv3
-BuildRequires: hostname git gnupg bats expect
-Requires: bash hostname git
+#BuildRequires: hostname git gnupg bats expect
+Requires: bash
+Requires: git
+Requires: /bin/hostname
 Source: https://github.com/TheLocehiliosan/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 BuildArch: noarch
 
@@ -21,8 +23,8 @@ encrypted before they are included in the repository.
 
 %build
 
-%check
-bats test
+# %check
+# bats test
 
 %install
 mkdir -p ${RPM_BUILD_ROOT}%{_bindir}
