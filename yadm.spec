@@ -9,6 +9,7 @@ Requires: bash
 Requires: git
 Requires: /bin/hostname
 Source: %{name}-%{version}.tar.gz
+BuildArch: noarch
 
 %description
 yadm is a tool for managing a collection of files across multiple computers,
@@ -31,8 +32,7 @@ install -m 644 yadm.1 ${RPM_BUILD_ROOT}%{_mandir}/man1
 %files
 %attr(755,root,root) %{_bindir}/yadm
 %attr(644,root,root) %{_mandir}/man1/*
-%license LICENSE
-%doc CHANGES CONTRIBUTORS README.md completion/*
+%doc CHANGES CONTRIBUTORS LICENSE README.md completion/*
 
 %changelog
 * Wed Oct 25 2017 Tim Byrne <sultan@locehilios.com> - 1.12.0-1
