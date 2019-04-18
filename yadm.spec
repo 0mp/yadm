@@ -9,7 +9,8 @@ Requires: bash
 Requires: git
 Requires: /bin/hostname
 #Source: https://github.com/TheLocehiliosan/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Source: https://github.com/TheLocehiliosan/%{name}/archive/%{version}.tar.gz
+#Source: https://github.com/TheLocehiliosan/%{name}/archive/%{version}.tar.gz
+Source: _service:download_url:yadm-1.12.0.tar.gz
 BuildArch: noarch
 
 %description
