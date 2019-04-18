@@ -1,17 +1,14 @@
 Summary: Yet Another Dotfiles Manager
 Name: yadm
 Version: 1.12.0
+Group: Development/Tools
 Release: 1%{?dist}
 URL: https://github.com/TheLocehiliosan/yadm
 License: GPLv3
-#BuildRequires: hostname git gnupg bats expect
 Requires: bash
 Requires: git
 Requires: /bin/hostname
-#Source: https://github.com/TheLocehiliosan/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
-#Source: https://github.com/TheLocehiliosan/%{name}/archive/%{version}.tar.gz
 Source: %{name}-%{version}.tar.gz
-BuildArch: noarch
 
 %description
 yadm is a tool for managing a collection of files across multiple computers,
@@ -24,9 +21,6 @@ encrypted before they are included in the repository.
 %setup -q
 
 %build
-
-# %check
-# bats test
 
 %install
 mkdir -p ${RPM_BUILD_ROOT}%{_bindir}
