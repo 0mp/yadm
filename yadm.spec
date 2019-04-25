@@ -1,3 +1,5 @@
+%{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
+
 Summary: Yet Another Dotfiles Manager
 Name: yadm
 Version: 1.12.0
@@ -24,20 +26,19 @@ encrypted before they are included in the repository.
 %build
 
 %install
-mkdir -p ${RPM_BUILD_ROOT}%{_bindir}
-install -m 755 yadm   ${RPM_BUILD_ROOT}%{_bindir}
+install -d -m 755 yadm   ${RPM_BUILD_ROOT}%{_bindir}
 
-mkdir -p ${RPM_BUILD_ROOT}%{_mandir}/man1
-install -m 644 yadm.1 ${RPM_BUILD_ROOT}%{_mandir}/man1
+install -d -m 644 yadm.1 ${RPM_BUILD_ROOT}%{_mandir}/man1
 
-mkdir -p ${RPM_BUILD_ROOT}%{_docdir}
-install -m 644 README.md ${RPM_BUILD_ROOT}%{_docdir}/README
-install -m 644 CHANGES CONTRIBUTORS LICENSE README.md completion ${RPM_BUILD_ROOT}%{_docdir}
+mkdir -p ${RPM_BUILD_ROOT}%{_pkgdocdir}
+cp README.md ${RPM_BUILD_ROOT}%{_pkgdocdir}/README
+cp CHANGES CONTRIBUTORS LICENSE ${RPM_BUILD_ROOT}%{_pkgdocdir}
+cp -r completion contrib ${RPM_BUILD_ROOT}%{_pkgdocdir}
 
 %files
 %attr(755,root,root) %{_bindir}/yadm
 %attr(644,root,root) %{_mandir}/man1/*
-%doc %{_docdir}/*
+%doc %{_pkgdocdir}
 
 %changelog
 * Wed Oct 25 2017 Tim Byrne <sultan@locehilios.com> - 1.12.0-1
