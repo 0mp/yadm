@@ -25,14 +25,19 @@ encrypted before they are included in the repository.
 
 %install
 mkdir -p ${RPM_BUILD_ROOT}%{_bindir}
-mkdir -p ${RPM_BUILD_ROOT}%{_mandir}/man1
 install -m 755 yadm   ${RPM_BUILD_ROOT}%{_bindir}
+
+mkdir -p ${RPM_BUILD_ROOT}%{_mandir}/man1
 install -m 644 yadm.1 ${RPM_BUILD_ROOT}%{_mandir}/man1
+
+mkdir -p ${RPM_BUILD_ROOT}%{_docdir}
+install -m 644 README ${RPM_BUILD_ROOT}%{_docdir}/README
+install -m 644 CHANGES CONTRIBUTORS LICENSE README.md completion ${RPM_BUILD_ROOT}%{_docdir}
 
 %files
 %attr(755,root,root) %{_bindir}/yadm
 %attr(644,root,root) %{_mandir}/man1/*
-%doc CHANGES CONTRIBUTORS LICENSE README.md completion/*
+%doc %{_docdir}/*
 
 %changelog
 * Wed Oct 25 2017 Tim Byrne <sultan@locehilios.com> - 1.12.0-1
