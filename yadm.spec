@@ -26,14 +26,16 @@ encrypted before they are included in the repository.
 %build
 
 %install
-install -d -m 755 yadm   ${RPM_BUILD_ROOT}%{_bindir}
+mkdir -p            ${RPM_BUILD_ROOT}%{_bindir}
+install -m 755 yadm ${RPM_BUILD_ROOT}%{_bindir}
 
+mkdir -p                 ${RPM_BUILD_ROOT}%{_mandir}/man1
 install -d -m 644 yadm.1 ${RPM_BUILD_ROOT}%{_mandir}/man1
 
-mkdir -p ${RPM_BUILD_ROOT}%{_pkgdocdir}
-cp README.md ${RPM_BUILD_ROOT}%{_pkgdocdir}/README
+mkdir -p                        ${RPM_BUILD_ROOT}%{_pkgdocdir}
+cp README.md                    ${RPM_BUILD_ROOT}%{_pkgdocdir}/README
 cp CHANGES CONTRIBUTORS LICENSE ${RPM_BUILD_ROOT}%{_pkgdocdir}
-cp -r completion contrib ${RPM_BUILD_ROOT}%{_pkgdocdir}
+cp -r completion contrib        ${RPM_BUILD_ROOT}%{_pkgdocdir}
 
 %files
 %attr(755,root,root) %{_bindir}/yadm
