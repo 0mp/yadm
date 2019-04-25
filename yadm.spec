@@ -11,6 +11,7 @@ Requires: bash
 Requires: git
 Requires: /bin/hostname
 Source: %{name}-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-build
 BuildArch: noarch
 
 %description
@@ -26,16 +27,16 @@ encrypted before they are included in the repository.
 %build
 
 %install
-mkdir -p            ${RPM_BUILD_ROOT}%{_bindir}
-install -m 755 yadm ${RPM_BUILD_ROOT}%{_bindir}
+%{__mkdir} -p %{buildroot}%{_bindir}
+%{__cp}  yadm %{buildroot}%{_bindir}
 
-mkdir -p              ${RPM_BUILD_ROOT}%{_mandir}/man1
-install -m 644 yadm.1 ${RPM_BUILD_ROOT}%{_mandir}/man1
+%{__mkdir} -p  %{buildroot}%{_mandir}/man1
+%{__cp} yadm.1 %{buildroot}%{_mandir}/man1
 
-mkdir -p                        ${RPM_BUILD_ROOT}%{_pkgdocdir}
-cp README.md                    ${RPM_BUILD_ROOT}%{_pkgdocdir}/README
-cp CHANGES CONTRIBUTORS LICENSE ${RPM_BUILD_ROOT}%{_pkgdocdir}
-cp -r completion contrib        ${RPM_BUILD_ROOT}%{_pkgdocdir}
+%{__mkdir} -p                        %{buildroot}%{_pkgdocdir}
+%{__cp} README.md                    %{buildroot}%{_pkgdocdir}/README
+%{__cp} CHANGES CONTRIBUTORS LICENSE %{buildroot}%{_pkgdocdir}
+%{__cp} -r completion                %{buildroot}%{_pkgdocdir}
 
 %files
 %attr(755,root,root) %{_bindir}/yadm
